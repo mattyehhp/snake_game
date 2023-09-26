@@ -75,6 +75,8 @@ public class SnakePanel extends JPanel implements KeyListener, ActionListener {
         g.setColor(Color.white);
         g.fillRect(foodX, foodY, 25, 25);
 
+
+        System.out.println(snakeX[0] + ": " + snakeY[0]);
         g.setColor(Color.blue);
         g.setFont(new Font("幼圓",Font.BOLD,20));
         g.drawString("長度："+length,730,30);
@@ -105,20 +107,20 @@ public class SnakePanel extends JPanel implements KeyListener, ActionListener {
             //移動頭部
             if(direction == "R"){
                 snakeX[0] += 25;
-                if(snakeX[0] > 950){
+                if(snakeX[0] >= 1000){
                     snakeX[0] = 0;
                 }
             }
             else if(direction == "L"){
                 snakeX[0] -= 25;
-                if(snakeX[0] < 25){
+                if(snakeX[0] <= -1){
                     snakeX[0] = 975;
                 }
             }
             else if(direction == "U"){
                 snakeY[0] -= 25;
-                if(snakeY[0] < 25){
-                    snakeY[0] = 775;
+                if(snakeY[0] <= -1){
+                    snakeY[0] = 750;
                 }
             }
             else if(direction == "D"){
@@ -131,7 +133,7 @@ public class SnakePanel extends JPanel implements KeyListener, ActionListener {
             if(snakeX[0] == foodX && snakeY[0] == foodY){
                 length++;
                 score += 10;
-                eat(foodX,foodY);
+                eat(foodX, foodY);
             }
             //死亡判定
             for (int i = 1; i < length; i++) {
